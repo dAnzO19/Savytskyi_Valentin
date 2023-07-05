@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int countNumbers(int r) { // Функція для підрахунку кількості чисел із розрядами, використовуючи цифри 5 та 9, в яких три однакові цифри не стоять поруч
+    if (r <= 0)
+        return 0;
+
+    int count = 0;
+    int consecutiveDigits = 0;
+
+    
+    int currentDigit = 5;  // Ініціалізуємо початковий розряд числа
+
+
+    while (r > 0) {  // Рахуємо кількість чисел із розрядами
+        count += currentDigit == 5 ? 2 : 1;
+
+
+        if (++consecutiveDigits == 3) {  // Якщо є 3 однакових цифри поруч, змінюємо поточний розряд
+            currentDigit = currentDigit == 5 ? 9 : 5;
+            consecutiveDigits = 0;
+        }
+
+        r--;
+    }
+
+    return count;
+}
+
+int main() {
+    int r;
+
+    printf("Enter the number of digits (r): ");
+    scanf("%d", &r);
+
+    int result = countNumbers(r);
+
+    printf("Number of numbers with %d digits: %d\n", r, result);
+
+    return 0;
+}

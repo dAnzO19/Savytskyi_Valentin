@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() { // Створення функції main
+
+    int t1, t2, t3;  // Додаємо змінні
+
+    printf("Enter 3 values: ");
+    scanf("%d", &t1);
+    scanf("%d", &t2); // Вводення значеннь для змінних 
+    scanf("%d", &t3);
+
+    float time = t1; // Присвоюєння змінній time будь яку змінну (t1/t2/t3)
+    
+    if (t2 > time)  // Якщо змінна t2 більша за time, то time присвоюється t2, якщо ні, то программа продовжується
+    {
+        time = t2;
+    }
+    
+    if (t3 > time) 
+    {
+        time = t3;
+    }
+
+    time = time / 3.0;
+
+    printf("The time it takes to eat the cake: %.2f hours\n", time); // .2f - округлює число до 2 знаків після крапки
+    return 0;
+}

@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int result(int m) // Функція для пошуку дільників числа m
+{ 
+    int count = 0;
+
+    if (m < 1 || m > 150) // Умова щоб m було більше ніж 1 але менше ніж 150
+        return 0;
+
+    for(int i = 1; i <= m; i++) // Порівнюється за формулою для пошуку дільників
+    {
+        if(m % i == m / i)
+        {
+            count++; // Підраховується кількість дільників
+        }
+    }
+    return count;
+}
+
+int main()
+{
+    int m;
+    int res = 0;
+    
+    printf("Enter a positive integer n: "); // Записуємо число
+    scanf("%d", &m);
+
+    res = result(m); // Розраховується
+    
+    printf("\nNumber of equal divisors : %d\n", res); // Виводиться результат
+    return 0;
+}

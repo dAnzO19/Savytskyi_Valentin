@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int gcd(int a, int b)
+{
+    if(b == 0)
+    {
+        return a;
+    }
+    return gcd(b, a % b); // Викликаємо функцію саму на себе для зменшення числа, поки b не буде дорівнювати 0, тоді повертаємо число A як нсд
+}
+
+int lcm(int a, int b)
+{
+    return (a * b) / gcd(a, b); // формула для пошуку НСК
+}
+
+
+int numbers(int *arr, int n) // Розраховуємо НСК для чисел більше ніж 2 при вписанні в консоль
+{
+    int result = arr[0];
+
+    for (int i = 1; i < n; i++)
+    {
+        result = lcm(result, arr[i]);
+    }
+
+    return result;
+}
+
+int main(void)
+{
+    int n;
+
+    printf("Enter the quantity: ");     // Вводимо кількість чисел для НСК
+    scanf("%d", &n);
+
+    int array[n];
+
+    printf("Enter the numbers: \n");     // Вписуємо  числа
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &array[i]);
+    }
+
+    int result = numbers(array, n);     // Присвоюємо результат функції
+
+    printf("NSK: %d\n", result); // Виводимо результат
+}

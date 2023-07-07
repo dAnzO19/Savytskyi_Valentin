@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int factorial(int n) {  // Функція обчислює факторіал числа n.
+
+    int fact = 1;
+    for (int i = 1; i <= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
+
+int countA(char *word) {  // Функція підраховує кількість анаграм слів, які можна утворити з заданого слова.
+
+    int len = strlen(word);
+    
+    int numAnagrams = factorial(len);
+    
+    int count[26] = {0};
+    for (int i = 0; i < len; i++) {
+        count[word[i] - 'A']++;
+    }
+    
+    for (int i = 0; i < 26; i++) {
+        // Якщо літера зустрічається більше одного разу, то розраховуємо кількість анаграм з урахуванням перестановок цієї літери.
+        if (count[i] > 1) {
+            numAnagrams /= factorial(count[i]);
+        }
+    }
+    
+    return numAnagrams;
+}
+
+int main() {
+    char word[15];
+    
+    printf("Write word: ");
+    scanf("%s", word);
+    
+    int numA = countA(word);
+    
+    printf("Num of anagrams: %d\n", numA);
+    
+    return 0;
+}
